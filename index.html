@@ -103,7 +103,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/03/27/hello-world/" data-id="cl18tpecv000080u4abcg2oxz" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/03/27/hello-world/" data-id="cl18ty6og0000mcu4d6zr37y4" class="article-share-link">Share</a>
       
       
     </footer>
@@ -136,20 +136,20 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>在大部分情况下我们电脑上都是一个账号，配置方面要相对简单很多，如果需要配置两个或以上的git账号的话，SSH就需要额外的配置用来保证把这些SSH区分开来。</p>
-<p>1.1首先要设置git的user.name和user.email，在gitbash上使用以下两个指令<br>‘’’bash<br>$ git config –global user.name “名字”<br>$ git config –global user.email “邮箱”<br>‘’’<br>没有报错就是登陆成功</p>
-<p>1.2如果不想来回切换的话也可以通过设置局部变量的方式解决<br>‘’’bash<br>git config –global –unset ‘user.name’<br>git config –global –unset ‘user.email’<br>‘’’<br>删除全局变量设置<br>然后进入项目的根目录单独设置<br>‘’’bash<br>git config user.name <code>xxx</code><br>git config user.email <code>xxx@xxx.com</code><br>‘’’<br>在设置完以后，如果需要部署git，在git init之后一定要再次检查设置，如果设置不对需要重新设置</p>
-<p>1.3确认没有报错以后生成SSH<br>‘’’bash<br>$ ssh-keygen -t rsa -C “<a href="mailto:&#x75;&#115;&#101;&#114;&#64;&#x65;&#109;&#x61;&#x69;&#x6c;&#x2e;&#99;&#111;&#x6d;">&#x75;&#115;&#101;&#114;&#64;&#x65;&#109;&#x61;&#x69;&#x6c;&#x2e;&#99;&#111;&#x6d;</a>“<br>‘’’<br>接下来会问你存储SSH的地址，如果以前没存过直接按三次回车就行，如果以前有的话需要设置一个新的名字。</p>
-<p>接下来查看自己的SSH根目录下有没有配置config文件夹，如果没有则使用以下指令<br>‘’’bash<br>$ touch config<br>‘’’<br>生成一个config文件夹，进入config文件夹手动配置如下<br>‘’’bash<br>Host username1 #后面后缀名可以随意写<br> HostName github.com<br> User git  #前缀名写对应网站的前缀名<br> IdentityFile ~/.ssh/id_rsa #对应自己的SSH密匙存储路径</p>
+<p>1.1首先要设置git的user.name和user.email，在gitbash上使用以下两个指令<br>‘’’ bash<br>$ git config –global user.name “名字”<br>$ git config –global user.email “邮箱”<br>‘’’<br>没有报错就是登陆成功</p>
+<p>1.2如果不想来回切换的话也可以通过设置局部变量的方式解决<br>‘’’ bash<br>git config –global –unset ‘user.name’<br>git config –global –unset ‘user.email’<br>‘’’<br>删除全局变量设置<br>然后进入项目的根目录单独设置<br>‘’’ bash<br>git config user.name <code>xxx</code><br>git config user.email <code>xxx@xxx.com</code><br>‘’’<br>在设置完以后，如果需要部署git，在git init之后一定要再次检查设置，如果设置不对需要重新设置</p>
+<p>1.3确认没有报错以后生成SSH<br>‘’’ bash<br>$ ssh-keygen -t rsa -C “<a href="mailto:&#x75;&#115;&#101;&#114;&#64;&#101;&#x6d;&#x61;&#x69;&#x6c;&#x2e;&#x63;&#111;&#x6d;">&#x75;&#115;&#101;&#114;&#64;&#101;&#x6d;&#x61;&#x69;&#x6c;&#x2e;&#x63;&#111;&#x6d;</a>“<br>‘’’<br>接下来会问你存储SSH的地址，如果以前没存过直接按三次回车就行，如果以前有的话需要设置一个新的名字。</p>
+<p>接下来查看自己的SSH根目录下有没有配置config文件夹，如果没有则使用以下指令<br>‘’’ bash<br>$ touch config<br>‘’’<br>生成一个config文件夹，进入config文件夹手动配置如下<br>‘’’ bash<br>Host username1 #后面后缀名可以随意写<br> HostName github.com<br> User git  #前缀名写对应网站的前缀名<br> IdentityFile ~/.ssh/id_rsa #对应自己的SSH密匙存储路径</p>
 <p>Host username2<br> HostName github.com #注意缩进<br> User git<br> IdentityFile ~/.ssh/id_rsa2 #对应自己另一个SSH密匙存储路径<br>‘’’<br>配置完成后将密匙用记事本形式打开，复制里面的内容，进入github账号，在进入Setting，进入SSH and GPG ksys，选择New SSH key，将复制内容黏贴进入内容，title随便填，保存</p>
-<p>添加新的SSH密匙到SSH agent中<br>进入.ssh根目录下，<br>‘’’bash<br>$ ssh-add -D #清空缓存<br>$ ssh-add id_rsa #依次输入密匙名称<br>$ ssh-add -d_rsa2<br>‘’’<br>如果以上命令出现错误，则需要先执行<br>‘’’bash<br>$ ssh-agent bash<br>‘’’<br>再继续执行</p>
-<p>验证配置是否成功<br>‘’’bash<br>ssh -T <a href="mailto:&#x67;&#x69;&#116;&#64;&#x67;&#105;&#116;&#x68;&#117;&#x62;&#x2e;&#99;&#x6f;&#109;">&#x67;&#x69;&#116;&#64;&#x67;&#105;&#116;&#x68;&#117;&#x62;&#x2e;&#99;&#x6f;&#109;</a> #在@的前面写User对应内容，后面写Host的对应内容<br>ssh -T <a href="mailto:&#103;&#x69;&#116;&#64;&#120;&#x78;&#x78;&#x78;&#120;&#120;&#120;&#x2e;&#x67;&#105;&#x74;&#104;&#117;&#98;&#46;&#x63;&#x6f;&#x6d;">&#103;&#x69;&#116;&#64;&#120;&#x78;&#x78;&#x78;&#120;&#120;&#120;&#x2e;&#x67;&#105;&#x74;&#104;&#117;&#98;&#46;&#x63;&#x6f;&#x6d;</a><br>‘’’<br>以下结果说明SSH正常连接<br>‘’’bash<br>Hi ‘用户名’! you ‘ve successfully authenticated, but GitHub does not provide s<br>hell access<br>‘’’</p>
-<p>部署hexo的部分请参考官方教程，这里仅需要注意关键部分，在部署完以后，hexo文件根目录里的_config.yml文件夹的配置，其中找到deploy部分<br>‘’’bash<br>deploy:<br>  type: ‘git’<br>  repo: <a href="mailto:&#103;&#105;&#116;&#x40;&#x67;&#x69;&#116;&#x68;&#x75;&#98;&#x2e;&#x63;&#x6f;&#x6d;">&#103;&#105;&#116;&#x40;&#x67;&#x69;&#116;&#x68;&#x75;&#98;&#x2e;&#x63;&#x6f;&#x6d;</a>:username/username.github.io.git<br>  brunch: main<br>‘’’<br>repo的配置需要采用github账户里面的SSH网址的格式，其中前缀名和后缀名改成在.ssh/config里面配置的内容，brunch请以官方文档为主，按需求自行调整</p>
+<p>添加新的SSH密匙到SSH agent中<br>进入.ssh根目录下，<br>‘’’ bash<br>$ ssh-add -D #清空缓存<br>$ ssh-add id_rsa #依次输入密匙名称<br>$ ssh-add -d_rsa2<br>‘’’<br>如果以上命令出现错误，则需要先执行<br>‘’’ bash<br>$ ssh-agent bash<br>‘’’<br>再继续执行</p>
+<p>验证配置是否成功<br>‘’’ bash<br>ssh -T <a href="mailto:&#x67;&#x69;&#116;&#x40;&#x67;&#105;&#x74;&#104;&#x75;&#98;&#x2e;&#x63;&#x6f;&#x6d;">&#x67;&#x69;&#116;&#x40;&#x67;&#105;&#x74;&#104;&#x75;&#98;&#x2e;&#x63;&#x6f;&#x6d;</a> #在@的前面写User对应内容，后面写Host的对应内容<br>ssh -T <a href="mailto:&#103;&#105;&#x74;&#64;&#120;&#120;&#x78;&#120;&#120;&#120;&#x78;&#x2e;&#x67;&#x69;&#116;&#104;&#x75;&#98;&#46;&#99;&#111;&#x6d;">&#103;&#105;&#x74;&#64;&#120;&#120;&#x78;&#120;&#120;&#120;&#x78;&#x2e;&#x67;&#x69;&#116;&#104;&#x75;&#98;&#46;&#99;&#111;&#x6d;</a><br>‘’’<br>以下结果说明SSH正常连接<br>‘’’bash<br>Hi ‘用户名’! you ‘ve successfully authenticated, but GitHub does not provide s<br>hell access<br>‘’’</p>
+<p>部署hexo的部分请参考官方教程，这里仅需要注意关键部分，在部署完以后，hexo文件根目录里的_config.yml文件夹的配置，其中找到deploy部分<br>‘’’ bash<br>deploy:<br>  type: ‘git’<br>  repo: <a href="mailto:&#103;&#105;&#x74;&#x40;&#x67;&#x69;&#x74;&#x68;&#117;&#98;&#46;&#x63;&#x6f;&#109;">&#103;&#105;&#x74;&#x40;&#x67;&#x69;&#x74;&#x68;&#117;&#98;&#46;&#x63;&#x6f;&#109;</a>:username/username.github.io.git<br>  brunch: main<br>‘’’<br>repo的配置需要采用github账户里面的SSH网址的格式，其中前缀名和后缀名改成在.ssh/config里面配置的内容，brunch请以官方文档为主，按需求自行调整</p>
 <p>注：按照此方法设置后，有时候在图片渲染方面，第二个项目有时会出现渲染失败的情况，本人并不知晓原因，欢迎留言讨论。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/03/27/%E5%9C%A8%E7%94%B5%E8%84%91%E4%B8%8A%E9%85%8D%E7%BD%AE%E5%A4%9A%E4%B8%AAgit%E8%B4%A6%E5%8F%B7%E4%BB%A5%E5%8F%8Ahexo/" data-id="cl18tpecz000180u41qo5h1hy" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/03/27/%E5%9C%A8%E7%94%B5%E8%84%91%E4%B8%8A%E9%85%8D%E7%BD%AE%E5%A4%9A%E4%B8%AAgit%E8%B4%A6%E5%8F%B7%E4%BB%A5%E5%8F%8Ahexo/" data-id="cl18ty6op0001mcu44eba9dcx" class="article-share-link">Share</a>
       
       
     </footer>
