@@ -7,13 +7,15 @@
   
   <title>在电脑上配置多个git账号以及hexo | thefireflly的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
+  <meta name="description" content="在大部分情况下我们电脑上都是一个账号，配置方面要相对简单很多，如果需要配置两个或以上的git账号的话，SSH就需要额外的配置用来保证把这些SSH区分开来。 1.1首先要设置git的user.name和user.email，在gitbash上使用以下两个指令$ git config –global user.name “名字”$ git config –global user.email “邮箱”没">
+<meta property="og:type" content="article">
 <meta property="og:title" content="在电脑上配置多个git账号以及hexo">
 <meta property="og:url" content="http://example.com/2022/03/27/%E5%9C%A8%E7%94%B5%E8%84%91%E4%B8%8A%E9%85%8D%E7%BD%AE%E5%A4%9A%E4%B8%AAgit%E8%B4%A6%E5%8F%B7%E4%BB%A5%E5%8F%8Ahexo/index.html">
 <meta property="og:site_name" content="thefireflly的博客">
+<meta property="og:description" content="在大部分情况下我们电脑上都是一个账号，配置方面要相对简单很多，如果需要配置两个或以上的git账号的话，SSH就需要额外的配置用来保证把这些SSH区分开来。 1.1首先要设置git的user.name和user.email，在gitbash上使用以下两个指令$ git config –global user.name “名字”$ git config –global user.email “邮箱”没">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-03-27T03:22:02.000Z">
-<meta property="article:modified_time" content="2022-03-27T03:22:02.118Z">
+<meta property="article:modified_time" content="2022-03-27T03:23:59.293Z">
 <meta property="article:author" content="thefireflly">
 <meta name="twitter:card" content="summary">
   
@@ -86,17 +88,45 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>在大部分情况下我们电脑上都是一个账号，配置方面要相对简单很多，如果需要配置两个或以上的git账号的话，SSH就需要额外的配置用来保证把这些SSH区分开来。</p>
+<p>1.1首先要设置git的user.name和user.email，在gitbash上使用以下两个指令<br>$ git config –global user.name “名字”<br>$ git config –global user.email “邮箱”<br>没有报错就是登陆成功</p>
+<p>1.2如果不想来回切换的话也可以通过设置局部变量的方式解决<br>git config –global –unset ‘user.name’<br>git config –global –unset ‘user.email’<br>删除全局变量设置<br>然后进入项目的根目录单独设置<br>git config user.name <code>xxx</code><br>git config user.email <code>xxx@xxx.com</code><br>在设置完以后，如果需要部署git，在git init之后一定要再次检查设置，如果设置不对需要重新设置</p>
+<p>1.3确认没有报错以后生成SSH<br>$ ssh-keygen -t rsa -C “<a href="mailto:&#x75;&#115;&#101;&#x72;&#64;&#101;&#x6d;&#97;&#x69;&#108;&#46;&#99;&#111;&#x6d;">&#x75;&#115;&#101;&#x72;&#64;&#101;&#x6d;&#97;&#x69;&#108;&#46;&#99;&#111;&#x6d;</a>“<br>接下来会问你存储SSH的地址，如果以前没存过直接按三次回车就行，如果以前有的话需要设置一个新的名字。</p>
+<p>接下来查看自己的SSH根目录下有没有配置config文件夹，如果没有则使用以下指令<br>$ touch config<br>生成一个config文件夹，进入config文件夹手动配置如下</p>
+<p>Host username1 #后面后缀名可以随意写<br> HostName github.com<br> User git  #前缀名写对应网站的前缀名<br> IdentityFile ~/.ssh/id_rsa #对应自己的SSH密匙存储路径</p>
+<p>Host username2<br> HostName github.com<br> User git<br> IdentityFile ~/.ssh/id_rsa2 #对应自己另一个SSH密匙存储路径</p>
+<p>配置完成后将密匙用记事本形式打开，复制里面的内容，进入github账号，在进入Setting，进入SSH and GPG ksys，选择New SSH key，将复制内容黏贴进入内容，title随便填，保存</p>
+<p>添加新的SSH密匙到SSH agent中<br>进入.ssh根目录下，<br>$ ssh-add -D #清空缓存<br>$ ssh-add id_rsa #依次输入密匙名称<br>$ ssh-add -d_rsa2<br>如果以上命令出现错误，则需要先执行<br>$ ssh-agent bash<br>再继续执行</p>
+<p>验证配置是否成功<br>ssh -T <a href="mailto:&#x67;&#x69;&#116;&#64;&#x67;&#x69;&#x74;&#104;&#x75;&#x62;&#x2e;&#99;&#x6f;&#x6d;">&#x67;&#x69;&#116;&#64;&#x67;&#x69;&#x74;&#104;&#x75;&#x62;&#x2e;&#99;&#x6f;&#x6d;</a> #在@的前面写User对应内容，后面写Host的对应内容<br>ssh -T <a href="mailto:&#103;&#x69;&#x74;&#64;&#120;&#x78;&#120;&#120;&#120;&#x78;&#x78;&#46;&#x67;&#105;&#x74;&#104;&#x75;&#98;&#x2e;&#x63;&#x6f;&#109;">&#103;&#x69;&#x74;&#64;&#120;&#x78;&#120;&#120;&#120;&#x78;&#x78;&#46;&#x67;&#105;&#x74;&#104;&#x75;&#98;&#x2e;&#x63;&#x6f;&#109;</a> </p>
+<p>以下结果说明SSH正常连接</p>
+<p>部署hexo的部分请参考官方教程，这里仅需要注意关键部分，在部署完以后，hexo文件根目录里的_config.yml文件夹的配置，其中找到deploy部分</p>
+<p>repo的配置需要采用github账户里面的SSH网址的格式，其中前缀名和后缀名改成在.ssh/config里面配置的内容，brunch请以官方文档为主，按需求自行调整</p>
+<p>注：按照此方法设置后，有时候在图片渲染方面，第二个项目有时会出现渲染失败的情况，本人并不知晓原因，欢迎留言讨论。</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/03/27/%E5%9C%A8%E7%94%B5%E8%84%91%E4%B8%8A%E9%85%8D%E7%BD%AE%E5%A4%9A%E4%B8%AAgit%E8%B4%A6%E5%8F%B7%E4%BB%A5%E5%8F%8Ahexo/" data-id="cl18pulmt0000acu4c4uy3kjh" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/03/27/%E5%9C%A8%E7%94%B5%E8%84%91%E4%B8%8A%E9%85%8D%E7%BD%AE%E5%A4%9A%E4%B8%AAgit%E8%B4%A6%E5%8F%B7%E4%BB%A5%E5%8F%8Ahexo/" data-id="cl18tcg4k0001lgu46xchaocr" class="article-share-link">Share</a>
       
       
     </footer>
   </div>
   
     
+<nav id="article-nav">
+  
+    <a href="/2022/03/27/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
   
 </article>
 
@@ -127,6 +157,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2022/03/27/hello-world/">Hello World</a>
+          </li>
         
           <li>
             <a href="/2022/03/27/%E5%9C%A8%E7%94%B5%E8%84%91%E4%B8%8A%E9%85%8D%E7%BD%AE%E5%A4%9A%E4%B8%AAgit%E8%B4%A6%E5%8F%B7%E4%BB%A5%E5%8F%8Ahexo/">在电脑上配置多个git账号以及hexo</a>
