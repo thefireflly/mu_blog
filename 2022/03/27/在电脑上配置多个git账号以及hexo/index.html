@@ -7,15 +7,15 @@
   
   <title>在电脑上配置多个git账号以及hexo | thefireflly的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在大部分情况下我们电脑上都是一个账号，配置方面要相对简单很多，如果需要配置两个或以上的git账号的话，SSH就需要额外的配置用来保证把这些SSH区分开来。&lt;!–more–&gt;###1首先要设置git的user.name和user.email，在gitbash上使用以下两个指令 12$ git config --global user.name “名字”$ git config --glo">
+  <meta name="description" content="在大部分情况下我们电脑上都是一个账号，配置方面要相对简单很多，如果需要配置两个或以上的git账号的话，SSH就需要额外的配置用来保证把这些SSH区分开来。&lt;!–more–&gt; 1首先要设置git的user.name和user.email，在gitbash上使用以下两个指令12$ git config --global user.name “名字”$ git config --global">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在电脑上配置多个git账号以及hexo">
 <meta property="og:url" content="http://example.com/2022/03/27/%E5%9C%A8%E7%94%B5%E8%84%91%E4%B8%8A%E9%85%8D%E7%BD%AE%E5%A4%9A%E4%B8%AAgit%E8%B4%A6%E5%8F%B7%E4%BB%A5%E5%8F%8Ahexo/index.html">
 <meta property="og:site_name" content="thefireflly的博客">
-<meta property="og:description" content="在大部分情况下我们电脑上都是一个账号，配置方面要相对简单很多，如果需要配置两个或以上的git账号的话，SSH就需要额外的配置用来保证把这些SSH区分开来。&lt;!–more–&gt;###1首先要设置git的user.name和user.email，在gitbash上使用以下两个指令 12$ git config --global user.name “名字”$ git config --glo">
+<meta property="og:description" content="在大部分情况下我们电脑上都是一个账号，配置方面要相对简单很多，如果需要配置两个或以上的git账号的话，SSH就需要额外的配置用来保证把这些SSH区分开来。&lt;!–more–&gt; 1首先要设置git的user.name和user.email，在gitbash上使用以下两个指令12$ git config --global user.name “名字”$ git config --global">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-03-27T03:22:02.000Z">
-<meta property="article:modified_time" content="2022-03-27T05:35:41.013Z">
+<meta property="article:modified_time" content="2022-03-27T05:37:10.696Z">
 <meta property="article:author" content="thefireflly">
 <meta name="twitter:card" content="summary">
   
@@ -88,41 +88,35 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在大部分情况下我们电脑上都是一个账号，配置方面要相对简单很多，如果需要配置两个或以上的git账号的话，SSH就需要额外的配置用来保证把这些SSH区分开来。<br>&lt;!–more–&gt;<br>###1首先要设置git的user.name和user.email，在gitbash上使用以下两个指令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name “名字”</span><br><span class="line">$ git config --global user.email “邮箱”</span><br></pre></td></tr></table></figure>
+        <p>在大部分情况下我们电脑上都是一个账号，配置方面要相对简单很多，如果需要配置两个或以上的git账号的话，SSH就需要额外的配置用来保证把这些SSH区分开来。<br>&lt;!–more–&gt;</p>
+<h3 id="1首先要设置git的user-name和user-email，在gitbash上使用以下两个指令"><a href="#1首先要设置git的user-name和user-email，在gitbash上使用以下两个指令" class="headerlink" title="1首先要设置git的user.name和user.email，在gitbash上使用以下两个指令"></a>1首先要设置git的user.name和user.email，在gitbash上使用以下两个指令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name “名字”</span><br><span class="line">$ git config --global user.email “邮箱”</span><br></pre></td></tr></table></figure>
 <p>没有报错就是登陆成功</p>
-<p>###2如果不想来回切换的话也可以通过设置局部变量的方式解决</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global --<span class="built_in">unset</span> <span class="string">&#x27;user.name&#x27;</span></span><br><span class="line">$ git config --global --<span class="built_in">unset</span> <span class="string">&#x27;user.email&#x27;</span></span><br></pre></td></tr></table></figure>
+<h3 id="2如果不想来回切换的话也可以通过设置局部变量的方式解决"><a href="#2如果不想来回切换的话也可以通过设置局部变量的方式解决" class="headerlink" title="2如果不想来回切换的话也可以通过设置局部变量的方式解决"></a>2如果不想来回切换的话也可以通过设置局部变量的方式解决</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global --<span class="built_in">unset</span> <span class="string">&#x27;user.name&#x27;</span></span><br><span class="line">$ git config --global --<span class="built_in">unset</span> <span class="string">&#x27;user.email&#x27;</span></span><br></pre></td></tr></table></figure>
 <p>删除全局变量设置<br>然后进入项目的根目录单独设置</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config user.name `xxx`</span><br><span class="line">$ git config user.email `xxx@xxx.com`</span><br></pre></td></tr></table></figure>
 <p>在设置完以后，如果需要部署git，在git init之后一定要再次检查设置，如果设置不对需要重新设置</p>
-<p>###3确认没有报错以后生成SSH</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C <span class="string">&quot;user@email.com&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="3确认没有报错以后生成SSH"><a href="#3确认没有报错以后生成SSH" class="headerlink" title="3确认没有报错以后生成SSH"></a>3确认没有报错以后生成SSH</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C <span class="string">&quot;user@email.com&quot;</span></span><br></pre></td></tr></table></figure>
 <p>接下来会问你存储SSH的地址，如果以前没存过直接按三次回车就行，如果以前有的话需要设置一个新的名字。</p>
-<p>###4接下来查看自己的SSH根目录下有没有配置config文件夹，如果没有则使用以下指令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">touch</span> config</span><br></pre></td></tr></table></figure>
-<p>###5生成一个config文件夹，进入config文件夹手动配置如下</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Host username1 <span class="comment">#后面后缀名可以随意写</span></span><br><span class="line"> HostName github.com</span><br><span class="line"> User git  <span class="comment">#前缀名写对应网站的前缀名</span></span><br><span class="line"> IdentityFile ~/.ssh/id_rsa <span class="comment">#对应自己的SSH密匙存储路径</span></span><br><span class="line"></span><br><span class="line">Host username2</span><br><span class="line"> HostName github.com <span class="comment">#注意缩进</span></span><br><span class="line"> User git</span><br><span class="line"> IdentityFile ~/.ssh/id_rsa2 <span class="comment">#对应自己另一个SSH密匙存储路径</span></span><br></pre></td></tr></table></figure>
+<h3 id="4接下来查看自己的SSH根目录下有没有配置config文件夹，如果没有则使用以下指令"><a href="#4接下来查看自己的SSH根目录下有没有配置config文件夹，如果没有则使用以下指令" class="headerlink" title="4接下来查看自己的SSH根目录下有没有配置config文件夹，如果没有则使用以下指令"></a>4接下来查看自己的SSH根目录下有没有配置config文件夹，如果没有则使用以下指令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">touch</span> config</span><br></pre></td></tr></table></figure>
+<h3 id="5生成一个config文件夹，进入config文件夹手动配置如下"><a href="#5生成一个config文件夹，进入config文件夹手动配置如下" class="headerlink" title="5生成一个config文件夹，进入config文件夹手动配置如下"></a>5生成一个config文件夹，进入config文件夹手动配置如下</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Host username1 <span class="comment">#后面后缀名可以随意写</span></span><br><span class="line"> HostName github.com</span><br><span class="line"> User git  <span class="comment">#前缀名写对应网站的前缀名</span></span><br><span class="line"> IdentityFile ~/.ssh/id_rsa <span class="comment">#对应自己的SSH密匙存储路径</span></span><br><span class="line"></span><br><span class="line">Host username2</span><br><span class="line"> HostName github.com <span class="comment">#注意缩进</span></span><br><span class="line"> User git</span><br><span class="line"> IdentityFile ~/.ssh/id_rsa2 <span class="comment">#对应自己另一个SSH密匙存储路径</span></span><br></pre></td></tr></table></figure>
 <p>配置完成后将密匙用记事本形式打开，复制里面的内容，进入github账号，在进入Setting，进入SSH and GPG ksys，选择New SSH key，将复制内容黏贴进入内容，title随便填，保存</p>
-<p>###6添加新的SSH密匙到SSH agent中<br>进入.ssh根目录下，</p>
+<h3 id="6添加新的SSH密匙到SSH-agent中"><a href="#6添加新的SSH密匙到SSH-agent中" class="headerlink" title="6添加新的SSH密匙到SSH agent中"></a>6添加新的SSH密匙到SSH agent中</h3><p>进入.ssh根目录下，</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-add -D <span class="comment">#清空缓存</span></span><br><span class="line">$ ssh-add id_rsa <span class="comment">#依次输入密匙名称</span></span><br><span class="line">$ ssh-add -d_rsa2</span><br></pre></td></tr></table></figure>
 <p>如果以上命令出现错误，则需要先执行</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-agent bash</span><br></pre></td></tr></table></figure>
 <p>再继续执行</p>
-<p>###7验证配置是否成功</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -T git@github.com <span class="comment">#在@的前面写User对应内容，后面写Host的对应内容</span></span><br><span class="line">$ ssh -T git@xxxxxxx.github.com </span><br></pre></td></tr></table></figure>
+<h3 id="7验证配置是否成功"><a href="#7验证配置是否成功" class="headerlink" title="7验证配置是否成功"></a>7验证配置是否成功</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -T git@github.com <span class="comment">#在@的前面写User对应内容，后面写Host的对应内容</span></span><br><span class="line">$ ssh -T git@xxxxxxx.github.com </span><br></pre></td></tr></table></figure>
 <p>以下结果说明SSH正常连接</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Hi <span class="string">&#x27;用户名&#x27;</span>! you <span class="string">&#x27;ve successfully authenticated, but GitHub does not provide s</span></span><br><span class="line"><span class="string">hell access</span></span><br></pre></td></tr></table></figure>
 
-<p>###8部署hexo的部分请参考官方教程，这里仅需要注意关键部分，在部署完以后，hexo文件根目录里的_config.yml文件夹的配置，其中找到deploy部分</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: <span class="string">&#x27;git&#x27;</span></span><br><span class="line">  repo: git@github.com:username/username.github.io.git</span><br><span class="line">  brunch: main</span><br></pre></td></tr></table></figure>
+<h3 id="8部署hexo的部分请参考官方教程，这里仅需要注意关键部分，在部署完以后，hexo文件根目录里的-config-yml文件夹的配置，其中找到deploy部分"><a href="#8部署hexo的部分请参考官方教程，这里仅需要注意关键部分，在部署完以后，hexo文件根目录里的-config-yml文件夹的配置，其中找到deploy部分" class="headerlink" title="8部署hexo的部分请参考官方教程，这里仅需要注意关键部分，在部署完以后，hexo文件根目录里的_config.yml文件夹的配置，其中找到deploy部分"></a>8部署hexo的部分请参考官方教程，这里仅需要注意关键部分，在部署完以后，hexo文件根目录里的_config.yml文件夹的配置，其中找到deploy部分</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: <span class="string">&#x27;git&#x27;</span></span><br><span class="line">  repo: git@github.com:username/username.github.io.git</span><br><span class="line">  brunch: main</span><br></pre></td></tr></table></figure>
 <p>repo的配置需要采用github账户里面的SSH网址的格式，其中前缀名和后缀名改成在.ssh/config里面配置的内容，brunch请以官方文档为主，按需求自行调整</p>
 <p>注：按照此方法设置后，有时候在图片渲染方面，第二个项目有时会出现渲染失败的情况，本人并不知晓原因，欢迎留言讨论。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/03/27/%E5%9C%A8%E7%94%B5%E8%84%91%E4%B8%8A%E9%85%8D%E7%BD%AE%E5%A4%9A%E4%B8%AAgit%E8%B4%A6%E5%8F%B7%E4%BB%A5%E5%8F%8Ahexo/" data-id="cl18ulm0x0001oou43d2f7wxz" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/03/27/%E5%9C%A8%E7%94%B5%E8%84%91%E4%B8%8A%E9%85%8D%E7%BD%AE%E5%A4%9A%E4%B8%AAgit%E8%B4%A6%E5%8F%B7%E4%BB%A5%E5%8F%8Ahexo/" data-id="cl18unoc700012su4fgj610hg" class="article-share-link">Share</a>
       
       
     </footer>
