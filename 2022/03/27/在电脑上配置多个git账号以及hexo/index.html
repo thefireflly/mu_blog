@@ -7,15 +7,15 @@
   
   <title>在电脑上配置多个git账号以及hexo | thefireflly的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在大部分情况下我们电脑上都是一个账号，配置方面要相对简单很多，如果需要配置两个或以上的git账号的话，SSH就需要额外的配置用来保证把这些SSH区分开来。&lt; !–more–&gt; 1首先要设置git的user.name和user.email，在gitbash上使用以下两个指令12$ git config --global user.name “名字”$ git config --globa">
+  <meta name="description" content="在大部分情况下我们电脑上都是一个账号，配置方面要相对简单很多，如果需要配置两个或以上的git账号的话，SSH就需要额外的配置用来保证把这些SSH区分开来。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在电脑上配置多个git账号以及hexo">
 <meta property="og:url" content="http://example.com/2022/03/27/%E5%9C%A8%E7%94%B5%E8%84%91%E4%B8%8A%E9%85%8D%E7%BD%AE%E5%A4%9A%E4%B8%AAgit%E8%B4%A6%E5%8F%B7%E4%BB%A5%E5%8F%8Ahexo/index.html">
 <meta property="og:site_name" content="thefireflly的博客">
-<meta property="og:description" content="在大部分情况下我们电脑上都是一个账号，配置方面要相对简单很多，如果需要配置两个或以上的git账号的话，SSH就需要额外的配置用来保证把这些SSH区分开来。&lt; !–more–&gt; 1首先要设置git的user.name和user.email，在gitbash上使用以下两个指令12$ git config --global user.name “名字”$ git config --globa">
+<meta property="og:description" content="在大部分情况下我们电脑上都是一个账号，配置方面要相对简单很多，如果需要配置两个或以上的git账号的话，SSH就需要额外的配置用来保证把这些SSH区分开来。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-03-27T03:22:02.000Z">
-<meta property="article:modified_time" content="2022-03-27T05:41:00.996Z">
+<meta property="article:modified_time" content="2022-03-27T05:47:48.737Z">
 <meta property="article:author" content="thefireflly">
 <meta name="twitter:card" content="summary">
   
@@ -88,7 +88,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在大部分情况下我们电脑上都是一个账号，配置方面要相对简单很多，如果需要配置两个或以上的git账号的话，SSH就需要额外的配置用来保证把这些SSH区分开来。<br>&lt; !–more–&gt;</p>
+        <p>在大部分情况下我们电脑上都是一个账号，配置方面要相对简单很多，如果需要配置两个或以上的git账号的话，SSH就需要额外的配置用来保证把这些SSH区分开来。</p>
 <h3 id="1首先要设置git的user-name和user-email，在gitbash上使用以下两个指令"><a href="#1首先要设置git的user-name和user-email，在gitbash上使用以下两个指令" class="headerlink" title="1首先要设置git的user.name和user.email，在gitbash上使用以下两个指令"></a>1首先要设置git的user.name和user.email，在gitbash上使用以下两个指令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name “名字”</span><br><span class="line">$ git config --global user.email “邮箱”</span><br></pre></td></tr></table></figure>
 <p>没有报错就是登陆成功</p>
 <h3 id="2如果不想来回切换的话也可以通过设置局部变量的方式解决"><a href="#2如果不想来回切换的话也可以通过设置局部变量的方式解决" class="headerlink" title="2如果不想来回切换的话也可以通过设置局部变量的方式解决"></a>2如果不想来回切换的话也可以通过设置局部变量的方式解决</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global --<span class="built_in">unset</span> <span class="string">&#x27;user.name&#x27;</span></span><br><span class="line">$ git config --global --<span class="built_in">unset</span> <span class="string">&#x27;user.email&#x27;</span></span><br></pre></td></tr></table></figure>
@@ -116,7 +116,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/03/27/%E5%9C%A8%E7%94%B5%E8%84%91%E4%B8%8A%E9%85%8D%E7%BD%AE%E5%A4%9A%E4%B8%AAgit%E8%B4%A6%E5%8F%B7%E4%BB%A5%E5%8F%8Ahexo/" data-id="cl18usilt000158u4631ahuhf" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/03/27/%E5%9C%A8%E7%94%B5%E8%84%91%E4%B8%8A%E9%85%8D%E7%BD%AE%E5%A4%9A%E4%B8%AAgit%E8%B4%A6%E5%8F%B7%E4%BB%A5%E5%8F%8Ahexo/" data-id="cl18v1pdc00011su47gp0cej0" class="article-share-link">Share</a>
       
       
     </footer>
