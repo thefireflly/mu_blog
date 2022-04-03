@@ -193,7 +193,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-04-03 14:55:09" itemprop="dateModified" datetime="2022-04-03T14:55:09+08:00">2022-04-03</time>
+      <time title="修改时间：2022-04-03 15:06:33" itemprop="dateModified" datetime="2022-04-03T15:06:33+08:00">2022-04-03</time>
     </span>
 
   
@@ -206,16 +206,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>0导读<br>本次文章是基于博主上一篇文章的延续，没有看过的朋友可以先看上一篇。本篇文章内容包括，线性代数，微积分，建议有相关基础之后再来。本文大量节选自《线性代数及其应用》。博主目前仍然有很多不足之处，欢迎指正，联系方式见首页。</p>
-<p>1内积空间定义<br>向量空间V上的内积是一个函数，任取属于空间的一对向量$ u,v $，映射实数$ \langle u,v \rangle $，需要满足以下公理：<br>（u，v，w属于V）<br>$ \langle u,v \rangle = \langle v,u \rangle $<br>$ \langle u+v,w \rangle  = \langle u,w \rangle + \langle v,w \rangle  $<br>$ \langle cu,v \rangle  = c \langle u,v \rangle  $（c为实数）<br>$ \langle u,u \rangle \ge 0 $且$ \langle u,u  \rangle = 0 $的充分必要条件是$ u = 0 $<br>举个例子：<br>取两个$ R^2 $中两个向量$ u = (u_1,u_2) , v = (v_1,v_2) $<br>$ \langle u,v \rangle = 4u_1 v_1 + 5 u_2 v_2 $<br>这些特性让一些特殊的内积也可以通过内积运算的方式运算。</p>
-<p>2内积空间的相关定义<br>1、长度为$ \sqrt{\langle u,u \rangle} $，记作：$ || u || $<br>2、距离为$ || u - v || $<br>3、正交性 如果$ \langle u,v \rangle = 0 $成立，则向量$ u $和向量$ v $正交</p>
-<h3 id="下面是内积空间的性质："><a href="#下面是内积空间的性质：" class="headerlink" title="下面是内积空间的性质："></a>下面是内积空间的性质：</h3><h4 id="格拉姆-施密特方法："><a href="#格拉姆-施密特方法：" class="headerlink" title="格拉姆-施密特方法："></a>格拉姆-施密特方法：</h4><p>首先我们复习一下在向量空间中的格拉姆-施密特方法：<br>对于$ R^n $的子空间的一个基{$ x_1,x_2,x_3, \cdots ,x_p $}，定义<br>$v_1 = x_1 $<br>$v_2 = x_2 - \frac{x_2 \cdot v_1}{v_1 \cdot v_1} v_1 $<br>$v_3 = x_3 - \frac{x_3 \cdot v_1}{v_1 \cdot v_1} v_1 - \frac{x_3 \cdot v_2}{v_2 \cdot v_2} v_2 $<br>$ \vdots $<br>$v_p = x_p - \frac{x_p \cdot v_1}{v_1 \cdot v_1} v_1 - \frac{x_p \cdot v_2}{v_2 \cdot v_2} v_2 - \cdots - \frac{x_p \cdot v_{p-1} }{v_{p-1} \cdot v_{p-1} } v_{p-1} $<br>该方法同样可以用于构造内积空间中有限维子空间的正交基。<br>一个向量在子空间W上的投影可以像在向量空间里一样构造。<br>这也意味着，内积空间仍然具有正交分解定理和最佳分解定理中的那些性质。正交投影，最小二乘拟合仍然正常适用。</p>
-<h4 id="柯西-施瓦兹不等式："><a href="#柯西-施瓦兹不等式：" class="headerlink" title="柯西-施瓦兹不等式："></a>柯西-施瓦兹不等式：</h4><p>$ | \langle u,v \rangle | \le || u || \cdot || v || $<br>没什么好说的性质，大家高中一直在用<br>证明：<br>$ ||proj_w v|| = || \frac{ \langle u,v \rangle } {  \langle u,u \rangle } u || = \frac{| \langle u,v \rangle | } {|  \langle u,u \rangle | } || u || = \frac{| \langle u,v \rangle | } {|| u ||} $<br>由于 $ || proj_w v || \le || v || $，证毕</p>
-<p>注：$ proj_w v $ 表示$ v $在子空间W上的投影</p>
-<h4 id="三角不等式"><a href="#三角不等式" class="headerlink" title="三角不等式"></a>三角不等式</h4><p>对于属于V的任意向量$ u $，$ v $，有<br>$ || u + v || \le || u || + || v || $<br>证明：略<br>（证明很简单的，自己回去推啦）</p>
-<h3 id="介绍一种常用的内积空间（需要微积分知识）"><a href="#介绍一种常用的内积空间（需要微积分知识）" class="headerlink" title="介绍一种常用的内积空间（需要微积分知识）"></a>介绍一种常用的内积空间（需要微积分知识）</h3><p>先给出数学定义：<br>构造由所有在区间[a,b]上的连续函数组成的向量空间，记作空间 $ C[a,b] $<br>内积：$ \langle f,g \rangle = \int_a^b f(t)g(t)dt $<br>下面解释一下这个构造的思路，以及一些初学者都会出现的疑惑<br>我们以两个函数$ f(x) = x^2  g(x) = x^3 $为例，假设我们取区间[-2,3]，在区间内取(-2,-1,0,1,2,3)六个点，那么用于描述$ f(x) $和$ g(x) $的向量就是<br>$ f = \begin{pmatrix} 4 \\ 1 \\ 0 \\ 1 \\ 4 \\ 9 \end{pmatrix} $ $ g = \begin{pmatrix} -8 \\ -1 \\ 0 \\ 1 \\ 8 \\ 27 \end{pmatrix} $<br>那么两个函数相乘就是<br>$\sum_{i =1}^6 f(i - 3)g(i - 3)$<br>假设在区间内平均取样n个点，则两函数相乘为<br>$\sum_{i =1}^n f(t_i)g(t_i)$ （$ t_i = a + \frac{(b-a)i}{n} $）<br>如果要精确描述函数在某一区间的变化，则需要取样n趋近于无穷大，此时函数相乘为<br>$ \lim_{n\to\infty} \sum_{i = 1}^n f(t_i)g(t_i) $<br>但是此时两个函数相乘的大小与n成正比，如果n趋近无穷大，两函数乘积就没有意义了，所以构造内积：<br>$ \lim_{n\to\infty}  \sum_{i = 1}^n \frac{f(t_i)g(t_i)}{n} $<br>此时内积等于$ \int_a^b f(t)g(t)dt $<br>验证这个内积，显然可以证明，符合内积空间的所有定义。</p>
-<h3 id="关于下次更新"><a href="#关于下次更新" class="headerlink" title="关于下次更新"></a>关于下次更新</h3><p>因为内积空间相关的应用有点多，我把内积空间的应用以及一些小技巧打包更新在下一篇了</p>
-
+          <p>国内教材不教线性代数的小技巧，适合业余数学爱好者。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/04/02/%E5%86%85%E7%A7%AF%E7%A9%BA%E9%97%B4%E6%80%A7%E8%B4%A8%E4%B8%8E%E5%BA%94%E7%94%A8%EF%BC%88%E4%B8%80%EF%BC%89/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
