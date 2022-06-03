@@ -20,27 +20,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.10.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="thefireflly的博客今天正式开始更新，这里感谢nranp的技术指导本博客博主并不属于专业人士，内容仅供参考，如果内容有误欢迎指出，github账户名：thefireflly，联系方式qq：1187240948本人博客会维持一周更新一次的更新频率。内容主要是对于平时技术问题或者是学习内容的记录，或者分享一些有趣的知识，思考。目前内容包括：git，python，opencv，数学">
+    <meta name="description" content="大学物理刚体定轴转动">
 <meta property="og:type" content="article">
-<meta property="og:title" content="博客简介">
-<meta property="og:url" content="http://example.com/2022/03/27/hello-world/index.html">
+<meta property="og:title" content="大学物理难点解析（一）">
+<meta property="og:url" content="http://example.com/2022/06/03/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86%E9%9A%BE%E7%82%B9%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89/index.html">
 <meta property="og:site_name" content="thefireflly的博客">
-<meta property="og:description" content="thefireflly的博客今天正式开始更新，这里感谢nranp的技术指导本博客博主并不属于专业人士，内容仅供参考，如果内容有误欢迎指出，github账户名：thefireflly，联系方式qq：1187240948本人博客会维持一周更新一次的更新频率。内容主要是对于平时技术问题或者是学习内容的记录，或者分享一些有趣的知识，思考。目前内容包括：git，python，opencv，数学">
+<meta property="og:description" content="大学物理刚体定轴转动">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-03-27T04:59:12.024Z">
-<meta property="article:modified_time" content="2022-03-27T05:53:09.611Z">
+<meta property="article:published_time" content="2022-06-03T01:17:54.032Z">
+<meta property="article:modified_time" content="2022-06-03T03:08:58.015Z">
 <meta property="article:author" content="thefireflly">
+<meta property="article:tag" content="物理">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/2022/03/27/hello-world/">
+<link rel="canonical" href="http://example.com/2022/06/03/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86%E9%9A%BE%E7%82%B9%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2022/03/27/hello-world/","path":"2022/03/27/hello-world/","title":"博客简介"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2022/06/03/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86%E9%9A%BE%E7%82%B9%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89/","path":"2022/06/03/大学物理难点解析（一）/","title":"大学物理难点解析（一）"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>博客简介 | thefireflly的博客</title>
+<title>大学物理难点解析（一） | thefireflly的博客</title>
   
 
 
@@ -102,7 +103,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -115,6 +116,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9A%E4%BD%93%E5%AE%9A%E8%BD%B4%E8%BD%AC%E5%8A%A8"><span class="nav-number">1.</span> <span class="nav-text">刚体定轴转动</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="nav-number">1.1.</span> <span class="nav-text">思路</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AC%E5%8A%A8%E6%83%AF%E9%87%8FJ"><span class="nav-number">2.</span> <span class="nav-text">转动惯量J</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BD%AC%E5%8A%A8%E6%83%AF%E9%87%8F%E7%9A%84%E6%8E%A8%E5%AF%BC"><span class="nav-number">2.1.</span> <span class="nav-text">转动惯量的推导</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%92%E5%8A%A8%E9%87%8F"><span class="nav-number">3.</span> <span class="nav-text">角动量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%9F%E5%92%8C%E8%83%BD"><span class="nav-number">4.</span> <span class="nav-text">功和能</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -172,7 +174,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/27/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/03/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86%E9%9A%BE%E7%82%B9%E8%A7%A3%E6%9E%90%EF%BC%88%E4%B8%80%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -185,12 +187,12 @@
     </span>
     
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="博客简介 | thefireflly的博客">
-      <meta itemprop="description" content="">
+      <meta itemprop="name" content="大学物理难点解析（一） | thefireflly的博客">
+      <meta itemprop="description" content="大学物理刚体定轴转动">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          博客简介
+          大学物理难点解析（一）
         </h1>
 
         <div class="post-meta-container">
@@ -202,12 +204,13 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2022-03-27 12:59:12 / 修改时间：13:53:09" itemprop="dateCreated datePublished" datetime="2022-03-27T12:59:12+08:00">2022-03-27</time>
+      <time title="创建时间：2022-06-03 09:17:54 / 修改时间：11:08:58" itemprop="dateCreated datePublished" datetime="2022-06-03T09:17:54+08:00">2022-06-03</time>
     </span>
 
   
 </div>
 
+            <div class="post-description">大学物理刚体定轴转动</div>
         </div>
       </header>
 
@@ -215,7 +218,11 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>thefireflly的博客今天正式开始更新，这里感谢<a target="_blank" rel="noopener" href="https://blog.nranp.com/">nranp</a>的技术指导<br>本博客博主并不属于专业人士，内容仅供参考，如果内容有误欢迎指出，github账户名：thefireflly，联系方式qq：1187240948<br>本人博客会维持一周更新一次的更新频率。<br>内容主要是对于平时技术问题或者是学习内容的记录，或者分享一些有趣的知识，思考。<br>目前内容包括：git，python，opencv，数学</p>
+        <h3 id="刚体定轴转动"><a href="#刚体定轴转动" class="headerlink" title="刚体定轴转动"></a>刚体定轴转动</h3><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>由于大部分人学过关于直线运动的内容，所以学习转动的时候可以将转动里面的概念类比到直线运动里面，速度类比角速度，加速度类比角加速度。</p>
+<h3 id="转动惯量J"><a href="#转动惯量J" class="headerlink" title="转动惯量J"></a>转动惯量J</h3><p>在一开始引入转动惯量这个变量的时候，由于并没有解释转动惯量的具体作用，导致在上到这一部分的时候，很多同学会脱节。<br>这一概念主要用于解释角加速度和力的大小的关系，由于角加速度与合外力矩成正比，且比值与物体本身有关，因此引入转动惯量，用于描述合外力矩与角加速度的比值。转动惯量定义式$ M = J \alpha$，其中$M$为力矩，$\alpha$为角加速度，$J$为转动惯量。<br>$ J = \sum_i \triangle m_i r_i^2$ </p>
+<h4 id="转动惯量的推导"><a href="#转动惯量的推导" class="headerlink" title="转动惯量的推导"></a>转动惯量的推导</h4><p>根据牛顿第二定律对$J$的值推导<br>$F_i = \triangle m_i a_i = \triangle m_i \frac{dv}{dt} = \triangle m_i r_i \frac{dw}{dt} = \triangle m_i r_i \alpha$<br>由于不同的点到轴的距离不同，在等式两端乘$r_i$把力转换力矩。<br>$ r_i F_i = \triangle m_i r_i^2 \alpha $<br>合外力矩为$M = \sum_i r_i F_i$<br>所以$ M = \sum_i \triangle m_i r_i^2 \alpha$，$\alpha$为定值，将$\alpha$提出，得到等式：<br>$ J = \sum_i \triangle m_i r_i^2 $ </p>
+<h3 id="角动量"><a href="#角动量" class="headerlink" title="角动量"></a>角动量</h3><p>类比于直线运动中的动量，角动量$ L = J w $角动量的变化率$M = \frac{dL}{dt} = 0$<br>这里的难点主要在于理解</p>
+<h3 id="功和能"><a href="#功和能" class="headerlink" title="功和能"></a>功和能</h3><p>从a位移到b所做的功为$ A_{ab} = \int_b^a F dl = \int_b^a F r d\theta = \int_{\theta_b}^{\theta_a} Md\theta$<br>计算动能<br> $ \int_{\theta_b}^{\theta_a} Md\theta = \int_{\theta_b}^{\theta_a} J\alpha d\theta = J \int_{\theta_b}^{\theta_a} \frac{dw}{dt} d\theta = \int_{w_b}^{w_a} wdw = \frac{1}{2}Jw_a^2 - \frac{1}{2}Jw_b^2 $<br>则转动动能为$ E_k = \frac{1}{2} Jw^2 $</p>
 
     </div>
 
@@ -224,19 +231,19 @@
     
 
     <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%89%A9%E7%90%86/" rel="tag"># 物理</a>
+          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/03/27/%E5%9C%A8%E7%94%B5%E8%84%91%E4%B8%8A%E9%85%8D%E7%BD%AE%E5%A4%9A%E4%B8%AAgit%E8%B4%A6%E5%8F%B7%E4%BB%A5%E5%8F%8Ahexo/" rel="prev" title="在电脑上配置多个git账号以及hexo">
-                  <i class="fa fa-chevron-left"></i> 在电脑上配置多个git账号以及hexo
+                <a href="/2022/04/18/java%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%955/" rel="prev" title="java学习记录（对象）">
+                  <i class="fa fa-chevron-left"></i> java学习记录（对象）
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/03/28/%E5%88%A9%E7%94%A8%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E8%BF%9B%E8%A1%8C%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E4%BC%B0%E8%AE%A1/" rel="next" title="利用线性代数进行最小二乘估计">
-                  利用线性代数进行最小二乘估计 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
