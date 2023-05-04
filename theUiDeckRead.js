@@ -10,5 +10,6 @@ deckreadBtn.onchange = function () {
     reader.onload = function (event) {
         var readAllData = JSON.parse(event.target.result);
         deck = readAllData;
+        timeRelation();
     }
 }

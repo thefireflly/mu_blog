@@ -78,11 +78,14 @@ var readAll = function(AllData){
         relationsLines.push(frame);
     }
 }
+
 var loadingImg = function(theurl){
     var theimg = new Image();
     theimg.onload = function(){
         drawDeckImage(theimg);
         cardsImages.push(theimg);
+        recreateDeck();
+        //每加载一次图片就刷新画布，解决图片加载后画布不刷新的问题，可能会影响性能，所以暂时做测试
     }
     theimg.src = theurl; 
 }
