@@ -2,7 +2,7 @@ var theCardTable = document.getElementById('cardTable');
 var ctx = theCardTable.getContext('2d');
 var newCards = [];
 var deck = {cards:[],cardsnum:0,relations:[],relationsnum:0,cardNamenum:0};
-var card2Relation = [];
+
 
 //以下是游戏界面画布绘制
 
@@ -30,7 +30,7 @@ for (let index1 = 0; index1 < 20; index1++) {
     }
     tableCards.push(line);
 }
-var tableData = {images:[],newCardList:[],tableCards:tableCards,inhand:false,handCard:null,backpalce:null,roundNumber:1};
+var tableData = {images:[],newCardList:[],tableCards:tableCards,inhand:false,handCard:null,backplace:null,roundNumber:1};
 // 画布上的事件监听器
 var getPosition = e => {
     return {
@@ -43,30 +43,14 @@ document.getElementById("test").addEventListener('click', function () {
     for (let index = 0; index < deck.cards.length; index++) {
         createCard(index);
     }
-    console.log(card2Relation);
 });
 document.getElementById("nextRound").addEventListener('click', function () {
-    return;
+    timePass();
 });
 
 theCardTable.addEventListener('mousedown', e => {
     var pos = getPosition(e)
-    var index1 = (pos.x-(pos.x)%50)/50;
-    var index2 = (pos.y-(pos.y)%75)/75;
-    if(index2 == 10 && (index1 < tableData.newCardList.length)){
-            tableData.handCard = tableData.newCardList.splice(index1, 1)[0];
-            tableData.inhand = true;
-            tableData.backpalce = null;
-            theCardTable.addEventListener('mousemove', dragging);
-    }
-    else if(tableData.tableCards[index1][index2].imgIndex != -1){
-        tableData.handCard = tableData.tableCards[index1][index2];
-        putTableCard(index1,index2,createEmptyCard());
-        tableData.inhand = true;
-        tableData.backpalce = {index1:index1,index2:index2};
-        theCardTable.addEventListener('mousemove', dragging);
-    }
-
+    pickUp(pos);
 })
 
 var dragging = e => {
@@ -86,7 +70,7 @@ theCardTable.addEventListener('mouseup', e => {
         tableData.inhand =false;
         if(index2 == 10){
             if(tableData.newCardList.length > 19){
-                tableData.tableCards[tableData.backpalce.index1][tableData.backpalce.index2] = tableData.handCard;
+                tableData.tableCards[tableData.backplace.index1][tableData.backplace.index2] = tableData.handCard;
             }else{
                 tableData.newCardList.push(tableData.handCard);
             }
@@ -126,8 +110,8 @@ var recreateTable = function(pos){
 
 
             ctx.fillStyle = "rgb(220,220,220)";
-            ctx.fillRect(index1*50,index2*75+58, 20, 17);
-            ctx.fillRect(index1*50+30,index2*75+58, 20, 17);
+            ctx.fillRect(index1*50,index2*75+58, 50, 17);
+            //ctx.fillRect(index1*50+30,index2*75+58, 20, 17);
             ctx.font = "22px serif";
             ctx.fillStyle = "rgb(0,0,0)";
             ctx.textAlign = "left";
@@ -156,16 +140,24 @@ var reaction = function(cardnum1,cardnum2,index1,index2){
         }
     }
     if(ans != -1){
-        createTableCard(index1,index2,ans);
+        if(deck.relations[ans].time == 0){
+            createTableCard(index1,index2,ans);
+            for (let index = 0; index < deck.relations[ans].produceCard.length; index++) {
+                createCard(deck.relations[ans].produceCard[index]);
+            }
+        }else{
+            shopBuy(ans,tableData.handCard.number,index1,index2);
+
+        }
     }else if(cardnum1 == cardnum2 && card2Relation[cardnum1] == -1){
         tableData.handCard.number += tableData.tableCards[index1][index2].number;
         putTableCard(index1,index2,tableData.handCard);
         return -1;
     }else{
-        if(tableData.backpalce == null){
+        if(tableData.backplace == null){
             tableData.newCardList.push(tableData.handCard);
         }else{
-            putTableCard(tableData.backpalce.index1,tableData.backpalce.index2,tableData.handCard);
+            putTableCard(tableData.backplace.index1,tableData.backplace.index2,tableData.handCard);
         }
     }
     return ans;
@@ -180,27 +172,96 @@ var imageloading = function(deckIndex){
     image.src = deck.cards[deckIndex].img;
 }
 
-var timeRelation = function(){
-    for (let index = 0; index < deck.cards.length; index++) {
-        card2Relation.push(-1);
-    }
-    for (let index = 0; index < deck.relations.length; index++) {
-        if(deck.relations[index].startCard.length == 1){
-            card2Relation[deck.relations[index].startCard[0]] = index;
+
+/***/
+var timePass = function(){
+    if(tableData.newCardList.length != 0){
+        var theLength = tableData.newCardList.length
+        for (let index = 0; index < theLength; index++) {
+            var theCard = tableData.newCardList.pop();
+            putOutCard(theCard);
         }
     }
-}
-
-var timePass = function(){
     for (let index1 = 0; index1 < tableData.tableCards.length; index1++) {
         for (let index2 = 0; index2 < tableData.tableCards[index1].length; index2++) {
-            if(tableData.tableCards[index1][index2].deckIndex == -1){
-                continue;
-            }
-            
-            
+            cardTimePass(index1,index2);
         }
         
     }
     tableData.roundNumber++;
+    recreateTable();
+}
+
+var cardTimePass = function(index1,index2){
+    if(tableData.tableCards[index1][index2].deckIndex == -1){
+        return;
+    }
+    if(card2Relation[tableData.tableCards[index1][index2].deckIndex] == -1){
+        return;
+    }
+    tableData.tableCards[index1][index2].time--;
+    if(tableData.tableCards[index1][index2].time <= 0){
+        var relation = deck.relations[card2Relation[tableData.tableCards[index1][index2].deckIndex]];
+        tableData.tableCards[index1][index2].time = relation.time;
+        if(relation.retainCard == null){
+            tableData.tableCards[index1][index2] = createEmptyCard();
+        }else if(tableData.tableCards[index1][index2].deckIndex != relation.retainCard){
+            createTableCard(index1,index2,card2Relation[tableData.tableCards[index1][index2].deckIndex]);
+        }
+        for (let index = 0; index < relation.produceCard.length; index++) {
+            createCard(relation.produceCard[index]);
+        }
+    }
+}
+
+var pickUp = function(pos){
+    var index1 = (pos.x-(pos.x)%50)/50;
+    var index2 = (pos.y-(pos.y)%75)/75;
+    if(index2 == 10 && (index1 < tableData.newCardList.length)){
+            tableData.handCard = tableData.newCardList.splice(index1, 1)[0];
+            tableData.inhand = true;
+            tableData.backplace = null;
+            theCardTable.addEventListener('mousemove', dragging);
+    }
+    else if(tableData.tableCards[index1][index2].imgIndex != -1){
+        var cardNum = tableData.tableCards[index1][index2].deckIndex;
+        if(pos.y - index2 * 75 > 57 && tableData.tableCards[index1][index2].number > 1){
+            tableData.handCard = new Card(tableData.tableCards[index1][index2].imgIndex,1,tableData.tableCards[index1][index2].deckIndex,0);
+            tableData.handCard.number = 1;
+            tableData.tableCards[index1][index2].number--;
+            tableData.inhand = true;
+            tableData.backplace = {index1:index1,index2:index2};
+            theCardTable.addEventListener('mousemove', dragging);
+        }else{
+            tableData.handCard = tableData.tableCards[index1][index2];
+            putTableCard(index1,index2,createEmptyCard());
+            tableData.inhand = true;
+            tableData.backplace = {index1:index1,index2:index2};
+            theCardTable.addEventListener('mousemove', dragging);
+        }
+    }
+}
+
+var putOutCard = function(card){
+    for (let index1 = 0; index1 < tableData.tableCards.length; index1++) {
+        for (let index2 = 0; index2 < tableData.tableCards[index1].length; index2++) {
+            if(tableData.tableCards[index1][index2].deckIndex == -1){
+                putTableCard(index1,index2,card);
+                return;
+            }
+        }
+    }
+}
+
+var shopBuy = function(shopIndex,number,index1,index2){
+    for (let index = 0; index < number; index++) {
+        tableData.tableCards[index1][index2].time--;
+        if(tableData.tableCards[index1][index2].time <= 0){
+            tableData.tableCards[index1][index2].time = deck.relations[shopIndex].time;
+            //
+            for (let i = 0; i < deck.relations[shopIndex].produceCard.length; i++) {
+                createCard(deck.relations[shopIndex].produceCard[i]);
+            }
+        }
+    }
 }

@@ -7,20 +7,19 @@
             border: 1px solid black;
         }
         #div1,
-        #div2 {
+        #div2,
+        #div3 {
             float: left;
         }
     </style>
 </head>
 
 <body>
-    <div id="div1">
+    <div id="div1" style="display:none">
         <button id='clearAll'>清空</button>
         <button id='test'>测试</button>
         <button id="addCards">加入卡组</button>
         <input id="jpgread" type="file">
-        
-        
         <br>
         <canvas id="theCard" width="500" height="750"></canvas><br>
     </div>
@@ -33,9 +32,13 @@
         <input id="deckRead" type="file"><br>
         <canvas id="cards" width="900" height="750"></canvas>
     </div>
+    <div id="div3">
+        <textarea style="width:300px;height:100px"></textarea>
+    </div>
     <script src="cardEnginer.js"></script>
     <script src="readwritejs.js"></script>
     <script src="deckEnginer.js"></script>
+    <script src="cardIntroducer.js"></script>
 </body>
 
 </html>

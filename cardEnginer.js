@@ -6,7 +6,7 @@ var cardsImages = [];
 var cardImage;
 //设定存储卡组信息的全局变量
 var deck = {cards:[],cardsnum:0,relations:[],relationsnum:0,cardNamenum:0};
-
+//drawAttribute()
 
 
 document.getElementById("clearAll").addEventListener('click', function () {
@@ -17,28 +17,21 @@ document.getElementById("addCards").addEventListener('click', function () {
     var numCard = thisCard.toDataURL();
     deckAddnewCard(deck,numCard);
 })
-document.getElementById("test").addEventListener('click', function () {
-    
-    drawAttribute();
-});
 
 
 
 thisCard.addEventListener('mousedown', e => {
     var pos = getPosition(e);
-    console.log(pos);
     thisCard.addEventListener('mousemove', dragging);
 })
 
 thisCard.addEventListener('mouseup', e => {
     var pos = getPosition(e)
-    console.log(pos);
     thisCard.removeEventListener('mousemove', dragging);
 })
 
 var dragging = function (e) {
     var pos = getPosition(e);
-    console.log(pos);
 }
 
 
@@ -46,7 +39,7 @@ var dragging = function (e) {
 var drawUrl = function(theurl){
     var img = new Image();   // 创建 img 元素
     img.onload = function(){
-        ctx.drawImage(img,0,0,500,750);
+        ctx.drawImage(img,0,70,500,500);
     }
     img.src = theurl; // 设置图片源地址
 }
@@ -105,8 +98,10 @@ var drawDeckImage = function(theImage){
 }
 var drawAttribute = function () {
     ctx.fillStyle = "rgb(220,220,220)";
-    ctx.fillRect(300, 570, 500, 750);
-    ctx.fillRect(0, 570, 200, 750);
+    ctx.fillRect(0, 570, 500, 180);
+    //ctx.fillStyle = "rgb(200,200,255)";
+    ctx.fillRect(0, 0, 500, 70);
+    //ctx.fillRect(0, 570, 200, 750);
     ctx.fillStyle = "rgb(0,0,0)";
     ctx.font = "220px serif";
     ctx.textAlign = "right";

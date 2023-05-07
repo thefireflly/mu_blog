@@ -14,6 +14,7 @@ jpgread.onchange = function () {
         var theurl = event.target.result;
         readImage(theurl);
         drawUrl(cardImage);
+        drawAttribute();
     }
 }
 

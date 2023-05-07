@@ -7,6 +7,7 @@ class Card {
     }
 }
 
+
 //所有的牌桌信息更改函数必须通过以下几个函数，其中不包括关系逻辑判断部分，仅执行改变
 var createCard = function (cardnum) {
     var deckCard; 
@@ -53,3 +54,25 @@ var createTableCard = function(index1,index2,relationnum){
     }
 }
 
+var createTableCard = function(index1,index2,relationnum){
+    var retainnum = deck.relations[relationnum].retainCard;
+    var time;
+    if(card2Relation[retainnum] != -1){
+        time = deck.relations[card2Relation[retainnum]].time;
+    }else{
+        time = 0;
+    }
+    
+    var img = new Image();
+    img.onload = function(){
+        var newCard = new Card(tableData.images.length,1,retainnum,time);
+        tableData.tableCards[index1][index2] = newCard;
+        tableData.images.push(img);
+        recreateTable();
+    }
+    if(retainnum != null){
+        img.src = deck.cards[retainnum].img;
+    }else{
+        putTableCard(index1,index2,createEmptyCard());
+    }
+}

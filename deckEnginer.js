@@ -6,15 +6,15 @@ var relationsLines = [];
 var inhand = false;
 var inhandCard;
 var chooseR = 0;
+var chooseCard = 0;
 
 
 cardsCanvas.addEventListener('mousedown', e => {
     var pos = getPosition(e);
-    console.log(pos);
     var posIndex = choose(pos);
+    chooseCard = posIndex;
     var index1 = (pos.x - pos.x % 50) / 50;
     var index2 = (pos.y - pos.y % 75) / 75;
-    console.log(index1);
     if (posIndex < deck.cardsnum && pos.x < 500) {
         inhandCard = posIndex;
         inhand = true;
@@ -44,7 +44,6 @@ cardsCanvas.addEventListener('mousedown', e => {
 
 cardsCanvas.addEventListener('mouseup', e => {
     var pos = getPosition(e);
-    console.log(pos);
     if (inhand) {
         inhand = false;
         var index1 = (pos.x - pos.x % 50) / 50;
@@ -70,7 +69,7 @@ var dragging = e => {
 }
 
 document.getElementById("test").addEventListener('click', function () {
-    recreateDeck();
+    //recreateDeck();
 })
 
 document.getElementById("createSynthesis").addEventListener('click', function () {
@@ -132,6 +131,11 @@ var recreateDeck = function (pos) {
     if (inhand) {
         cardsctx.drawImage(cardsImages[inhandCard], pos.x - 25, pos.y - 37, 50, 75);
     }
+    /*
+    cardsctx.fillStyle = "rgb(255,0,0)";
+    cardsctx.strokeRect((chooseCard % 10)*50,((chooseCard - (chooseCard % 10))/10)*75,50,75);
+    cardsctx.fillStyle = "rgb(0,0,0)";
+    * */
 }
 
 var createRelation = function () {
@@ -172,7 +176,6 @@ var setTime = function(){
     var x = document.getElementById('setTime');
     var time = x.value
     deck.relations[chooseR].time = time;
-    console.log(time);
     recreateDeck({x:0,y:0});
 }
 
